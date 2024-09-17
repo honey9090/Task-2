@@ -1,0 +1,245 @@
+# Task-2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-theme {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body.dark-theme {
+    background-color: #333;
+    color: white;
+}
+
+nav {
+    background: #333;
+    padding: 1em;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f4a261;
+}
+
+#theme-toggle {
+    background-color: #f4a261;
+    border: none;
+    color: white;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: #e76f51;
+}
+
+section {
+    padding: 50px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+#home {
+    background: #18252b;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.project-card {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+#scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background: #e76f51;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5em;
+    display: none;
+}
+
+#scroll-top.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle">Toggle Theme</button>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Hi, I'm Himanshu</h1>
+        <p>Front-end Developer & Designer</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I create web applications with modern design and clean code.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-card">
+            <h3>Project 1</h3>
+            <p>A description of your awesome project.</p>
+        </div>
+        <div class="project-card">
+            <h3>Project 2</h3>
+            <p>A description of your awesome project.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: johndoe@example.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 John Doe</p>
+    </footer>
+
+    <button id="scroll-top" class="hidden">↑</button>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    // Smooth scroll for internal links
+document.querySelectorAll('nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Sticky Navbar on scroll
+window.onscroll = function() {
+    stickyNavbar();
+    scrollTopButton();
+};
+
+const navbar = document.getElementById("navbar");
+const sticky = navbar.offsetTop;
+
+function stickyNavbar() {
+    if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky");
+    } else {
+        navbar.classList.remove("sticky");
+    }
+}
+
+// Theme Toggle
+const themeToggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-theme");
+    body.classList.toggle("light-theme");
+});
+
+// Scroll to Top Button
+const scrollTopBtn = document.getElementById("scroll-top");
+
+function scrollTopButton() {
+    if (window.scrollY > 500) {
+        scrollTopBtn.classList.add("show");
+    } else {
+        scrollTopBtn.classList.remove("show");
+    }
+}
+
+scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+</script>
+</html>
